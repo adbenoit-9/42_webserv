@@ -59,4 +59,5 @@ location [route]
 }
 ```
 
-*In collaboration with @besellem and @kev-ye*
+*In collaboration with [besellem][1] and [kev-ye][1] 🔥*
+
