@@ -3,7 +3,7 @@
 
 ## Usage
 ```
-$ git clone https://github.com/besellem/webserv.git
+$ git clone https://github.com/adbenoit-9/42_Webserv.git
 $ cd 42_Webserv/
 $ make
 $ ./webserv [config_file]
