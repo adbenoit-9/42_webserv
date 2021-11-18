@@ -59,5 +59,7 @@ location [route]
 }
 ```
 
-*In collaboration with [besellem][1] and [kev-ye][1] 🔥*
+*In collaboration with [besellem][1] and [kaye][2] 🔥*
 
+[1]https://github.com/besellem
+[2]https://github.com/kev-ye
