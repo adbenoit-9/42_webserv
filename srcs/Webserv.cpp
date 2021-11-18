@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "webserv.hpp"
+#include "Webserv.hpp"
 
 
 _BEGIN_NS_WEBSERV
 
-WebServer::WebServer(void) :
+Webserv::Webserv(void) :
 	_servers(),
 	_socks(NULL)
 {}
 
-WebServer::~WebServer()
+Webserv::~Webserv()
 {
 	if (_socks != NULL)
 	{
@@ -32,17 +32,17 @@ WebServer::~WebServer()
 /*
 ** Declared in `parser.cpp' :
 **
-** void		WebServer::parse(const std::string&);
+** void		Webserv::parse(const std::string&);
 */
 
-size_t			WebServer::serverSize(void) const
+size_t			Webserv::serverSize(void) const
 { return this->_servers.size(); }
 
-const Server&	WebServer::getServer(int i) const
+const Server&	Webserv::getServer(int i) const
 { return *(this->_servers[i]); }
 
 /* Count the differents socket of the config file */
-size_t			WebServer::countSocket() const
+size_t			Webserv::countSocket() const
 {
 	size_t	count = _servers.size();
 
@@ -61,7 +61,7 @@ size_t			WebServer::countSocket() const
 }
 
 /* Selects all server blocks adapted to the socket */
-std::vector<Server *>	WebServer::selectServers(size_t& index)
+std::vector<Server *>	Webserv::selectServers(size_t& index)
 {
 	std::vector<Server *>	blocks;
 	bool					firstOccur = false;
@@ -98,7 +98,7 @@ std::vector<Server *>	WebServer::selectServers(size_t& index)
 	return blocks;
 }
 
-void			WebServer::createServers(void)
+void			Webserv::createServers(void)
 {
 	const size_t	n = countSocket();
 	Socket			cur;
@@ -117,7 +117,7 @@ void			WebServer::createServers(void)
 	_epoll.startEpoll();
 }
 
-const char*		WebServer::ParsingError::what() const throw()
+const char*		Webserv::ParsingError::what() const throw()
 { return "file not served by webserv"; }
 
 

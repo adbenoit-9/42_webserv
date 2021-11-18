@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "webserv.hpp"
+#include "Webserv.hpp"
 
 _BEGIN_NS_WEBSERV
 
@@ -63,7 +63,7 @@ void	Server::setName(const tokens_type &tok) {
 
 void	Server::setSocket(const tokens_type &tok) {
 	 if (tok.size() != 2)
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 
 	size_t		pos = tok[1].find(':');
 	std::string	port;
@@ -77,20 +77,20 @@ void	Server::setSocket(const tokens_type &tok) {
 	}
 
 	if (!ft_isNumeric(port) || !ft_isIpAddress(this->_ip))
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	std::stringstream(port) >> this->_port;
 	if (this->_port > std::numeric_limits<unsigned short>().max())
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 }
 
 void	Server::setErrorPages(const tokens_type &tok) {
 	 if (tok.size() < 3)
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	for (tokens_type::const_iterator it = tok.begin() + 1; it != tok.end() - 1; it++)
 	{
 		int error_code;
 		if (!ft_isNumeric(*it))
-			throw WebServer::ParsingError();
+			throw Webserv::ParsingError();
 		std::stringstream(*it) >> error_code;
 		if (this->_errorPages.find(error_code) != this->_errorPages.end())
 			this->_errorPages.erase(error_code);
@@ -100,15 +100,15 @@ void	Server::setErrorPages(const tokens_type &tok) {
 
 void	Server::setClientMaxBodySize(const tokens_type &tok) {
 	 if (tok.size() != 2)
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	if (!ft_isNumeric(tok[1]))
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	std::stringstream(tok[1]) >> this->_clientMaxBodySize;
 }
 
 void	Server::setCgi(t_location  *loc, const tokens_type &tok) {
 	 if (tok.size() != 3)
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	loc->cgi.first = tok[1];
 	loc->cgi.second = tok[2];
 }
@@ -119,26 +119,26 @@ void	Server::setIndex(t_location  *loc, const tokens_type &tok) {
 
 void	Server::setAutoIndex(t_location  *loc, const tokens_type &tok) {
 	if (tok.size() != 2)
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	if (tok[1] == "on")
 		loc->autoindex = AUTOINDEX_ON;
 	else if (tok[1] != "off")
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 }
 
 void	Server::setRedirection(t_location  *loc, const tokens_type &tok) {
 	 if (tok.size() != 3 || !ft_isNumeric(tok[1]))
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	std::stringstream(tok[1]) >> loc->redirection.first;
 	if (loc->redirection.first != 307 && loc->redirection.first != 308
 		&& (loc->redirection.first < 300 || loc->redirection.first > 304))
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	loc->redirection.second = tok[2];
 }
 
 void	Server::setRoot(t_location  *loc, const tokens_type &tok) {
 	if (tok.size() != 2)
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	if (tok[1][0] != '/')
 		loc->root = loc->path + tok[1];
 	else
@@ -176,13 +176,13 @@ void	Server::setMethods(t_location  *loc, const tokens_type &tok)
 			}
 		}
 		if (i == 3)
-			throw WebServer::ParsingError();
+			throw Webserv::ParsingError();
 	}
 }
 
 void	Server::setUploadStore(t_location  *loc, const tokens_type &tok) {
 	if (tok.size() != 2 || !ft_isDirectory(ROOT_PATH + tok[1]))
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	loc->uploadStore = tok[1];
 	if (tok[1].back() != '/')
 		loc->uploadStore += "/";
@@ -197,7 +197,7 @@ void	Server::newLocation(const tokens_type &tok) {
 	t_location	*loc;
 
 	if (tok.size() != 2 || tok[1].find(';') != std::string::npos)
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	loc = new t_location;
 	loc->path = tok[1];
 	loc->methods.push_back("GET");
@@ -232,7 +232,7 @@ void	Server::newLocationDirective(const tokens_type &tok)
 	t_location				*loc = this->_locations.back();
 
 	if (tok.size() < 2)
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	for (size_t i = 0; !directives[i].empty(); ++i)
 	{
 		if (tok[0] == directives[i])
@@ -242,7 +242,7 @@ void	Server::newLocationDirective(const tokens_type &tok)
 			return ;
 		}
 	}
-	throw WebServer::ParsingError();
+	throw Webserv::ParsingError();
 }
 
 /* Adds the new directive to the server */
@@ -274,7 +274,7 @@ void	Server::newDirective(const tokens_type &tokens)
 			return ;
 		}
 	}
-	throw WebServer::ParsingError();
+	throw Webserv::ParsingError();
 }
 
 /* Display location block like the config file */

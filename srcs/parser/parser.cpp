@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "webserv.hpp"
+#include "Webserv.hpp"
 
 _BEGIN_NS_WEBSERV
 
@@ -56,14 +56,14 @@ static void	parse_line(ServerGenerator& servers, std::string line)
 		{
 			tok = ft_vectorcut(tok, ';');
 			if (servers.size() == 0)
-				throw WebServer::ParsingError();
+				throw Webserv::ParsingError();
 			servers.newDirective(servers.last(), tok);
 		}
 	}
 }
 
 /* Reads the config file and parse it line by line */
-void	WebServer::parse(const std::string &config_file)
+void	Webserv::parse(const std::string &config_file)
 {
 	if (getExtension(config_file) != CONFIG_FILETYPE)
 		throw ParsingError();

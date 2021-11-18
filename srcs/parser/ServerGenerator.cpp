@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "webserv.hpp"
+#include "Webserv.hpp"
 
 _BEGIN_NS_WEBSERV
 
@@ -52,7 +52,7 @@ Server*	ServerGenerator::last()            const { return this->_servers.back();
 /* if the key 'server' is well placed, add a new location to the generator */
 void	ServerGenerator::newServer(const tokens_type &tok) {
 	if (tok.size() != 1 || this->_state != START)
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	this->_servers.push_back(new Server());
 	this->_state = NEW_SERVER;
 }
@@ -60,7 +60,7 @@ void	ServerGenerator::newServer(const tokens_type &tok) {
 /* if the key 'location' is well placed, add a new location to the server */
 void	ServerGenerator::newLocation(Server *server, const tokens_type &tok) {
 	if (this->_state != IN_SERVER)
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 	server->newLocation(tok);
 	this->_state = NEW_LOCATION;
 }
@@ -72,33 +72,33 @@ void	ServerGenerator::newDirective(Server *server, const tokens_type &tok) {
 	else if (this->_state == IN_LOCATION)
 		server->newLocationDirective(tok);
 	else
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 }
 
 /* check if the '{' is well placed */
 void	ServerGenerator::openBlock(const tokens_type &tokens)
 {
 	if (tokens.size() != 1)
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 
 	if (this->_state == NEW_SERVER || this->_state == NEW_LOCATION)
 		++this->_state;
 	else
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 }
 
 /* check if the '}' is well placed */
 void	ServerGenerator::closeBlock(const tokens_type &tokens)
 {
 	if (tokens.size() != 1)
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 
 	if (this->_state == IN_LOCATION)
 		this->_state = IN_SERVER;
 	else if (this->_state == IN_SERVER)
 		this->_state = START;
 	else
-		throw WebServer::ParsingError();
+		throw Webserv::ParsingError();
 }
 
 /* Display server blocks like the config file */

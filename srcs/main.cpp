@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "webserv.hpp"
+#include "Webserv.hpp"
 
 /* global */
-INLINE_NAMESPACE::WebServer		webserv_g;
+INLINE_NAMESPACE::Webserv		webserv_g;
 
 int		main(int ac, char **av)
 {

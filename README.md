@@ -4,7 +4,7 @@
 ## Usage
 ```
 $ git clone https://github.com/besellem/webserv.git
-$ cd webserv/
+$ cd 42_Webserv/
 $ make
 $ ./webserv [config_file]
 ```
@@ -59,6 +59,8 @@ location [route]
 }
 ```
 
+## Preview
+![3](preview.png)
 
 *In collaboration with [besellem][1] and [kaye][2] 🔥*
 

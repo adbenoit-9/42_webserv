@@ -33,7 +33,7 @@ DIRS			:= $(OBJ_DIR) $(addprefix $(OBJ_DIR)/, $(SUB_DIR))
 # FILES
 NAME			:= webserv
 SRC				:= main.cpp \
-				   webserv.cpp
+				   Webserv.cpp
 SUB_SRC			:= parser.cpp \
 				   Server.cpp \
 				   ServerGenerator.cpp

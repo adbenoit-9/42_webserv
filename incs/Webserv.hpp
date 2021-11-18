@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   webserv.hpp                                        :+:      :+:    :+:   */
+/*   Webserv.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -26,15 +26,15 @@ class cgi;
 class Socket;
 class Epoll;
 
-class WebServer
+class Webserv
 {
 	public:
-		WebServer(void);
-		~WebServer();
+		Webserv(void);
+		~Webserv();
 	
 	private:
-		WebServer(const WebServer &);
-		WebServer&				operator=(const WebServer &);
+		Webserv(const Webserv &);
+		Webserv&				operator=(const Webserv &);
 	
 	public:
 		void					parse(const std::string &);
@@ -57,7 +57,7 @@ class WebServer
 		ServerGenerator		_servers;
 		Socket				*_socks;
 	
-}; /* class WebServer */
+}; /* class Webserv */
 
 _END_NS_WEBSERV
 
