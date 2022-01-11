@@ -6,8 +6,8 @@
 Compatible with Mozilla Firefox.
 
 ```
-$ git clone https://github.com/adbenoit-9/42_Webserv.git
-$ cd 42_Webserv/
+$ git clone https://github.com/adbenoit-9/42_webserv.git
+$ cd 42_webserv/
 $ make
 $ ./webserv [config_file]
 ```
